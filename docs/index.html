@@ -328,7 +328,7 @@ sales_chart.render()
       )
       sparkline3.render()
     </script> 
-	<script>
+	<!-- <script>
 	  fetch("https://script.google.com/macros/s/AKfycbwp9sEFjoK3xmRT6c_unJJy3it8KvG-Ai0dhj5Aikujz4NrK9kFovnluplQ0hUGrZOfMw/exec")
 	    .then(response => response.json())
 	    .then(result => {
@@ -346,6 +346,27 @@ sales_chart.render()
 	    .catch(error => {
 	      console.error("Lỗi gọi API GAS:", error);
 	    });
+	</script> -->
+	<script>
+	  document.addEventListener("DOMContentLoaded", function () {
+	    fetch("https://script.google.com/macros/s/AKfycbwp9sEFjoK3xmRT6c_unJJy3it8KvG-Ai0dhj5Aikujz4NrK9kFovnluplQ0hUGrZOfMw/exec")
+	      .then(response => response.json())
+	      .then(result => {
+	        if (result.success) {
+	          // Cập nhật tiêu đề dashboard
+	          document.getElementById("dashboardTitle").textContent = result.data.title;
+	          document.title = result.data.title;
+
+	          // Cập nhật order count
+	          document.getElementById("orderCount").textContent = result.data.orderCount;
+	        } else {
+	          console.error("API error:", result.error);
+	        }
+	      })
+	      .catch(error => {
+	        console.error("Lỗi gọi API GAS:", error);
+	      });
+	  });
 	</script>
 
 
